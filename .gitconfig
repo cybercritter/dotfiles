@@ -1,0 +1,80 @@
+[init]
+	defaultBranch = main
+[user]
+	name = Michael Reid
+	email = pershing2.crr@gmail.com
+
+[commit]
+    # Enforce GPG/SSH signing for security (optional but recommended)
+    gpgsign = false 
+
+[core]
+    # Use VS Code as the default editor (change to 'nano', 'vim', or 'ed' if preferred)
+    editor = code --wait
+    # Handle line endings automatically (cross-platform safety)
+    autocrlf = input
+    # Global ignores file
+    excludesfile = ~/.gitignore_global
+
+[init]
+    # Set the modern default branch name
+    defaultBranch = main
+
+[alias]
+    # Status and shortcuts
+    st = status -sb
+    co = checkout
+    cb = checkout -b
+    br = branch
+    cm = commit -m
+    cam = commit -am
+    amend = commit --amend --no-edit
+
+    # Powerful logging (Pretty, compact graph view)
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    last = log -1 HEAD
+
+    # Stash helpers
+    sl = stash list
+    sa = stash apply
+    ss = stash push -m
+
+    # Upstream syncing
+    pullall = !"git fetch --all --prune && git pull"
+    purr = pull --rebase
+
+    # Cleanup local branches that were deleted on remote
+    gone = !"git fetch -p && git branch -vv | awk '/: gone]/ {print $1}' | xargs -r git branch -D"
+
+[color]
+    # Enable vibrant colors in the terminal UI
+    ui = auto
+
+[pull]
+    # Prevent accidental merge commits when pulling; enforce clean histories
+    rebase = true
+
+[push]
+    # Automatically push to the matching remote branch name
+    default = simple
+    # Automatically set upstream on first push
+    autoSetupRemote = true
+
+[fetch]
+    # Automatically clean up local references to deleted remote branches
+    prune = true
+
+[merge]
+    # Show a conflict markers with the original common ancestor state
+    conflictstyle = zdiff3
+
+[diff]
+    # Detect renames accurately
+    renames = copies
+    # Use a mnemonic prefix (i: index, w: work tree, c: commit)
+    mnemonicPrefix = true
+
+[help]
+    # Automatically correct typos in commands after 1.5 seconds
+    autocorrect = 15
+
